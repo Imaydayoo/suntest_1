@@ -76,6 +76,7 @@ def getDpd():
 
 
 df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/test2.csv')
+
 print(df.shape)
 # getfetalheight()
 # getMAC()
