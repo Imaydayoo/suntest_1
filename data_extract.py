@@ -336,6 +336,80 @@ def get_fp():
     df.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/test2.csv')
 
 
+def get_abnormal():
+    df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/data.csv')
+    # print(type(df['专科检查'][12]))
+    print(len(df))
+    ans = []
+    for i in range(len(df)):
+        if df['label'][i] >= 4.0 or df['label'][i] <= 2.5:
+            ans.append(i)
+
+    # new_data = df.iloc[ans, :]
+    # temp = pd.concat([new_data, new_data2])
+    abnormal_data = df.iloc[ans, :]
+    print(abnormal_data)
+    abnormal_data.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/abnormal.csv')
+
+
+def get_high_weight():
+    df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/data.csv')
+    # print(type(df['专科检查'][12]))
+    print(len(df))
+    ans = []
+    for i in range(len(df)):
+        if df['label'][i] >= 4.0:
+            ans.append(i)
+
+    # new_data = df.iloc[ans, :]
+    # temp = pd.concat([new_data, new_data2])
+    abnormal_data = df.iloc[ans, :]
+    print(abnormal_data)
+    abnormal_data.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/high.csv')
+
+
+def get_low_weight():
+    df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/data.csv')
+    # print(type(df['专科检查'][12]))
+    print(len(df))
+    ans = []
+    for i in range(len(df)):
+        if df['label'][i] <= 2.5:
+            ans.append(i)
+
+    # new_data = df.iloc[ans, :]
+    # temp = pd.concat([new_data, new_data2])
+    low_data = df.iloc[ans, :]
+    print(low_data)
+    low_data.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/low.csv')
+
+
+def get_normal():
+    df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/data.csv')
+    # print(type(df['专科检查'][12]))
+    print(len(df))
+    ans = []
+    n = 0
+    for i in range(len(df)):
+        if 4.0 > df['label'][i] > 2.5 and n < 10000:
+            ans.append(i)
+            n += 1
+
+    # new_data = df.iloc[ans, :]
+    # temp = pd.concat([new_data, new_data2])
+    normal_data = df.iloc[ans, :]
+    print(normal_data)
+    normal_data.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/normal_10000.csv')
+
+
+def get_balanced():
+    df1 = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/abnormal.csv')
+    df2 = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/normal.csv')
+    temp = pd.concat([df1, df2])
+    print(temp)
+    temp.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/balanced.csv')
+
+
 # df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/test2.csv')
 # print(df.shape)
 
@@ -355,5 +429,8 @@ def get_fp():
 # getgf()
 # get_height()
 # get_weight()
-get_fp()
-
+# get_fp()
+# get_balanced()
+#get_high_weight()
+# get_low_weight()
+get_normal()

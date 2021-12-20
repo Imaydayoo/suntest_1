@@ -165,14 +165,14 @@ def delete_GA():
 
     ans = []
     for i in range(n):
-        if df['孕周week'][i] < 35:
+        if df['GA'][i] < 35:
             count += 1
             ans.append(i)
     print(count)
-    print(ans)
-    df.drop(ans, inplace=True)
-    print(len(df))
-    df.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/test2.csv')
+    # print(ans)
+    # df.drop(ans, inplace=True)
+    # print(len(df))
+    # df.to_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/test2.csv')
 
 
 def delete_height():
@@ -214,10 +214,10 @@ def delete_weight():
 # delete_lack_char()
 # delete_fh()
 # delete_mac()
-# delete_GA()
+delete_GA()
 # delete_bpd()
 # delete_fhc()
 # delete_fl()
 # delete_ad()
 # delete_height()
-delete_weight()
+# delete_weight()
