@@ -30,24 +30,6 @@ def get_accuracy(y_pre, y_label):
     return accuracy
 
 
-'''
-使用正态分布随机生成两类数据
-第一类有100个点，使用均值为2，标准差为1的正态分布随机生成，标签为0。
-第二类有100个点，使用均值为-2，标准差为1的正态分布随机生成，标签为1。
-torch.normal(tensor1,tensor2)
-输入两个张量，tensor1为正态分布的均值，tensor2为正态分布的标准差。
-torch.normal以此抽取tensor1和tensor2中对应位置的元素值构造对应的正态分布以随机生成数据，返回数据张量。
-'''
-
-# x1_t = torch.normal(2 * torch.ones(100, 2), 1)
-# y1_t = torch.zeros(100)
-#
-# x2_t = torch.normal(-2 * torch.ones(100, 2), 1)
-# y2_t = torch.ones(100)
-#
-# x_t = torch.cat((x1_t, x2_t), 0)
-# y_t = torch.cat((y1_t, y2_t), 0)
-
 data_set = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/balanced.csv')
 
 # x是4列特征

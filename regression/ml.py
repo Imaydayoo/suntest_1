@@ -8,16 +8,22 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.svm import SVR, NuSVR
 
-df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/balanced.csv')
+df = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/train_nw.csv')
+df_hw = pd.read_csv('/Users/apple/Desktop/深度学习数据/华侨医院-孕产妇EHR信息(脱敏)/pre_nw.csv')
 print(df.columns)
 
 # 相关性分析
 # print(df.corr(method='spearman'))
 
-x = df.iloc[:, 0:-2]
-y = df.iloc[:, -2]
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=5)
+x = df.iloc[:, 0:16]
+mean = x.mean(axis=0)
+std = x.std(axis=0)
+x = (x - mean) / std
 
+y = df.iloc[:, -1]
+# x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=5)
+x_test = df_hw.iloc[:, 0:-1]
+y_test = df_hw.iloc[:, -1]
 # 建立模型
 
 #   1 线性模型
@@ -28,9 +34,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 
 # # 2 多项式回归
 # poly_reg = PolynomialFeatures(degree=2)  # 2最好
-# x_poly = poly_reg.fit_transform(x_train)
+# x_poly = poly_reg.fit_transform(x)
 # model = LinearRegression()
-# model.fit(x_poly, y_train)
+# model.fit(x, y)
 # y_test_pred = model.predict(poly_reg.transform(x_test))
 
 
@@ -45,9 +51,9 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_
 
 
 # # 5 使用KNN回归算法求解
-# model = KNeighborsRegressor(n_neighbors=10)
-# model.fit(x_train,y_train)
-# y_test_pred = model.predict(x_test)
+model = KNeighborsRegressor(n_neighbors=10)
+model.fit(x, y)
+y_test_pred = model.predict(x_test)
 
 
 # 传统公式法
